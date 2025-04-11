@@ -6,14 +6,12 @@ export default function Header() {
   const { user, setUser, cart, products, orders } = useContext(appContext);
   const items = products.filter((value) => cart[value.id] > 0);
   const [myOrder, setMyOrder] = useState([]);
-  const NAME = process.env.REACT_APP_NAME
-  const COLOR = process.env.REACT_APP_COLOR
   useEffect(() => {
     setMyOrder(orders.filter((value) => value.email === user.email));
   }, [orders, user]);
   return (
     <div className="App-Header-Row">
-      <h2 style={{backgroundColor:COLOR}}>{NAME}</h2>
+      <h2>React Store</h2>
       <div>
         <Link to={"/"}>Home</Link>-
         <Link to={"/cart"}>Cart({items.length})</Link>-
@@ -25,9 +23,9 @@ export default function Header() {
         ) : (
           <Link
             to={"/login"}
-            // onClick={() =>
-            //   setUser({ ...user, name: "", email: "", password: "" })
-            // }
+            onClick={() =>
+              setUser({ ...user, name: "", email: "", password: "" })
+            }
           >
             Logout
           </Link>

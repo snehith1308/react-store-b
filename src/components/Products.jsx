@@ -4,8 +4,6 @@ import { appContext } from "../App";
 import { useContext } from "react";
 export default function Products() {
   const { user, products, cart, setCart } = useContext(appContext);
-  const NAME = process.env.REACT_APP_NAME
-  const COLOR = process.env.REACT_APP_COLOR
   const addToCart = (id) => {
     !cart[id] && setCart({ ...cart, [id]: 1 });
   };
@@ -18,7 +16,6 @@ export default function Products() {
   return (
     <>
       <h3>{user.name}</h3>
-      <p>{NAME}</p>
       <div className="App-Products-Row">
         {products.map((value, index) => (
           <div key={index} className="App-Products-Box">
